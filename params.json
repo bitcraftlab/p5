@@ -1,0 +1,6 @@
+{
+  "name": "p5.js sketches",
+  "tagline": "A small collection of p5.js sketches",
+  "body": "Click on the links to play with the sketches:\r\n* [hello leap](./hello_leap)\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
