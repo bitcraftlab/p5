@@ -18,11 +18,9 @@
 var xgap = 20;
 var ygap = 20;
 
-var id = 53910;
-// var id = 'random';
-// var id = 'random';
+var id = 'random';
+// var id = 53910;
 // var id = 'latest';
-// var id = 120;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -77,12 +75,15 @@ function windowResized() {
 function loadGML(id, params) {
 
   // construct URL
-  // var url = 'http://000000book.com/data/' + id + '.json';
-  // var type = 'jsonp';
+  var url = 'http://000000book.com/data/' + id + '.json';
+
+  // 000000book does not support HTTPS. Let's use a cross-origin proxy...
+  var url = 'https://crossorigin.me/' + url;
+  var type = 'jsonp';
 
   // Use local data
-  var url = './data/' + id + '.json';
-  var type = 'json';
+  // var url = './data/' + id + '.json';
+  // var type = 'json';
 
   // construct url params
   if(params) {
