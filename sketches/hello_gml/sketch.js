@@ -18,9 +18,10 @@
 var xgap = 20;
 var ygap = 20;
 
-var id = "random";
-// var id = "random";
-// var id = "latest";
+var id = 53910;
+// var id = 'random';
+// var id = 'random';
+// var id = 'latest';
 // var id = 120;
 
 
@@ -52,7 +53,7 @@ function setup() {
   // id = params.id ? params.id : id;
 
   //// or try to pass extra parameters ...
-  //loadGML("latest", {"application": "eyewriter"});
+  //loadGML('latest', {'application': 'eyewriter'});
 
 }
 
@@ -76,20 +77,25 @@ function windowResized() {
 function loadGML(id, params) {
 
   // construct URL
-  var url = "http://000000book.com/data/" + id + ".json";
+  // var url = 'http://000000book.com/data/' + id + '.json';
+  // var type = 'jsonp';
+
+  // Use local data
+  var url = './data/' + id + '.json';
+  var type = 'json';
 
   // construct url params
   if(params) {
     var urlparams = [];
     for(var key in params) {
-      urlparams.push(key + "=" + params[key]);
+      urlparams.push(key + '=' + params[key]);
     }
-    url += "?" + join(urlparams, "&");
+    url += '?' + join(urlparams, '&');
   }
 
-  // download GML as JSONP
-  println("Downloading " + url );
-  loadJSON(url, parseGML, "jsonp");
+  // download GML
+  println('Downloading ' + url );
+  loadJSON(url,  parseGML, type);
 
 }
 
@@ -135,16 +141,16 @@ function exposeGML(_GML) {
 function printGML(GML) {
 
     // meta data
-    var id =  "'" + GML.id + "'";
+    var id =  '"' + GML.id + '"';
     var user = GML.gml_username;
-    var tags = join(getTags(GML), " ");
-    println("Downloaded GML", id, "by", user, tags);
+    var tags = join(getTags(GML), ' ');
+    println('Downloaded GML', id, 'by', user, tags);
 
     // environment (gobal)
-    println("Bounding Box: ", bbox);
+    println('Bounding Box: ', bbox);
 
     // stroke data (global)
-    println("Strokes", strokes);
+    println('Strokes', strokes);
 
 }
 
@@ -222,11 +228,11 @@ function getTags(GML) {
   } else {
 
     // use the p5.js split and trim functions, to extract the keywords
-    var keywords = trim(split(GML.gml_keywords, ","));
+    var keywords = trim(split(GML.gml_keywords, ','));
 
     // functions are first class citizens in javascript ...
     var hashtag = function(s) {
-      return "#" + s.replace(" ", "_");
+      return '#' + s.replace(' ', '_');
     };
 
     // using Array.map to apply a function to all elements of an array
